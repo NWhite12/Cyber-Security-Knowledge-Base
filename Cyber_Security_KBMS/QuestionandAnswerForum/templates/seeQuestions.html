@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+	 </div>
+	 <div class="container see-question-body">
+<h1 class="view-q-align">Q & A site!</h1>
+<div class="content">
+{% for question in questions %}
+  <div class="question">
+    <!-- link to the website url created wit slug -->
+      <a href="/question/{{ question.qid }}/{{ question.slug }}"><h1 class="q-color-black">{{ question.question_title }}</h1></a>
+      <p>{{ question.question_text|truncatechars:300|slice:"-4" }}...</p>
+  </div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

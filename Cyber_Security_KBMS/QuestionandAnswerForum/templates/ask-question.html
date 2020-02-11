@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+        <div class="container content">
+        <h1>Ask a Question</h1>
+        <p>Type your question below.</p>
+
+
+        <form class="" action="ask-question" method="post">
+            {% csrf_token %}
+            <input type="text" name="title" value="" autocomplete="off" placeholder="What's your question's title?" class="askInput"><p />
+            <textarea name="question" rows="8" cols="80" placeholder="What's your question?"></textarea><p />
+            <input type="text" name="posted_by" value="" autocomplete="off" placeholder="Enter your name ..." class="askInput"><p />
+            <input type="submit" name="ask" value="Ask Question" class="btn btn-outline-secondary">
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        </div>
+		{% endblock %}
+    </body>
+</html>

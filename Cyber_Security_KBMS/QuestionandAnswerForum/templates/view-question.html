@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+	 <div class="container view-question">
+        <h1>{{ question.question_title }}</h1>
+        <p>{{ question.question_text|safe }}</p>
+        <p class="questiondetails"><span style="float: left">Posted on <strong>{{ question.date_posted }}</strong></span><span style="float: right">Posted by <strong>{{ question.posted_by }}</strong></span></p>
+		<div id="answers">
+
+        </div>
+      {% endblock %}
+    </body>
+</html>

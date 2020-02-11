@@ -1,0 +1,177 @@
+body {
+	background-color: white;
+	color: black;
+	padding-bottom: 2.5rem;
+	height: 100%;
+}
+
+html {
+	height: 100%;
+}
+
+.navbar-color {
+	background-color: #08038F;
+	color: white;
+}
+
+/* .profile {
+	padding-left: 60em;
+} */
+
+.header {
+	padding: 1.3em;
+}
+
+.logo-title {
+	font-size: 1em;
+	display: inline-block;
+	color: white;
+	position: absolute;
+	padding-left: 1em;
+}
+
+.nav-item {
+	font-size: 1.3em;
+	color: white !important;
+}
+
+.nav-font {
+	font-size: 1.1em;
+}
+
+.nav-text {
+	color: white;
+}
+
+.q-color {
+	color: white;
+}
+
+.q-color-black {
+	color: black;
+}
+
+.question {
+	border: solid #08038F;
+	padding-bottom: 20px;
+	margin-bottom: 1em;
+	border-radius: 6px;
+    padding: 8px;
+}
+
+.view-q-align {
+	text-align: center;
+	margin-top: 1em;
+	text-decoration: underline;
+}
+
+.view-question {
+	margin-top: 3em;
+	border: solid #08038F;
+}
+
+.search-section {
+	margin-top: 4em !important;
+}
+
+.search-form {
+	width: 80% !important;
+	padding: 1.375rem 0.75rem !important;
+}
+
+.recent-post {
+	border-style: solid;
+	border-color: #08038F;
+	background-color: #08038F;
+	color: white;
+	margin-bottom: inherit
+}
+
+.popular-post {
+	border-style: solid;
+	border-color: #08038F;
+	background-color: #08038F;
+	color: white;
+	margin-bottom: inherit
+}
+
+.post-header-text {
+	font-size: 1.4em;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.post-box {
+	margin-bottom: 3rem;
+	margin-top: 8em;
+}
+
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid black;
+}
+.askInput {
+	width: 53% !important;
+    margin-bottom: 1em;
+    padding-bottom: 10px;
+}
+
+.input-post {
+	padding: 3em;
+}
+
+.content {
+	margin-top: 4em;
+	position: relative;
+}
+
+footer {
+	background-color: #08038F;
+	color: white;
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+	overflow: hidden;
+}
+
+.see-question-body {
+	margin-bottom: 8em;
+}
+
+.recent-post-text {
+	background-color: white;
+    color: black;
+    border: 14px white;
+    padding: 8rem;
+    margin-right: 3em;
+    margin-left: 5em;
+	margin-bottom: inherit
+}
+
+.popular-post-text {
+	background-color: white;
+    color: black;
+    border: 14px white;
+    padding: 8rem;
+    margin-right: 3em;
+    margin-left: 5em;
+	margin-bottom: inherit
+}
+
+@media only screen and (max-width: 320px){
+	.profile {
+		padding-left: initial;
+		display: none;
+	}
+	
+	.nav-item {
+		padding-right: 10.14em;
+	}
+	
+	.know-base {
+		padding-right: 5.05em;
+	}
+}

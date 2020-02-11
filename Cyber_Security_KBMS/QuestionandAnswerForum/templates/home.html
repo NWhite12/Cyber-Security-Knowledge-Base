@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+  <div class="container">
+	   <form class="form-inline my-2 my-lg-0 search-section">
+         <input class="form-control search-form mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		 <button class="btn btn-success my-2 my-sm-0 px-4 py-2" type="submit">Go</button>
+	   </form>
+	 </div>
+	<div class="row mr-0 post-box">
+      <div class="col recent-post">
+      <p class="post-header-text">Recent Post</p>
+	  <div class="recent-post-text"><span>There will be post here after figuring out the algorithm....</span></div>
+	  </div>
+    <div class="col popular-post">
+     <p class="post-header-text">Popular Post</p>
+	 <div class="popular-post-text"><span>There will be post here after figuring out the algorithm....</span></div>
+    </div>
+    </div>
+
+	<div class="input-post">
+	  <form class="mb-5">
+	    <label for="post">Your Post</label>
+        <input type="text" id="post" name="post">
+	  </form>
+	</div>
+{% endblock %}
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
