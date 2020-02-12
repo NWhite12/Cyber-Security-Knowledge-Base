@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+	 </div>
+	 <div class="container results">
+<h1 class="view-q-align">Results!</h1>
+<div class="content">
+{% for results in results %}
+  <div class="results">
+      <p>{{results.title}}</p>
+      <p>{{results.content|truncatechars:300|slice:"-4" }}...</p>
+  </div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
+</body>
+</html>
+
+
