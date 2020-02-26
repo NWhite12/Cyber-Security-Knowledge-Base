@@ -1,58 +1,70 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.text import slugify
 
-# Create your models here.
-class Category(models.Model):
-    category_title = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.category_title
-    
-
-class KnowledgeBaseEntry(models.Model):
-    topic = models.CharField(max_length=50)
-    category = models.OneToOneField(Category, on_delete = models.PROTECT)
+class Knowledge(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
     content = models.TextField()
-    date_last_modified = models.DateTimeField()
     last_modified_by  = models.ForeignKey(User, on_delete = models.PROTECT)
-    def save(self):
+    insert_date = models.DateTimeField()
+    update_date = models.DateTimeField()
+        #Slug = provides url for question to be referenced later
+    slug = models.SlugField(max_length=40)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
         #update the time on save and modifed
         if not self.id:
-            self.created = timezone.now()
-        self.modified = timezone.now()
-        return super(KnowledgeBaseEntry, self).save()
+            self.insert_date = timezone.now()
+        self.update_date = timezone.now()
+        return super(Knowledge, self).save(*args,**kwargs)
     
     def __str__(self):
-        return self.topic
+        return self.name
 
-class Keywords(models.Model):
-    keyword = models.CharField(max_length=50)
+class Topic(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.keyword
+        return self.name
 
 class Expertise(models.Model):
-    expertise_title = models.CharField(max_length=50)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+
     def __str__(self):
-        return self.keyword
+        return self.name
 
 class EntrySubEntry(models.Model):
-    entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='entry')
-    subentry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='subentry')
+    parent_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT, related_name = "parent")
+    child_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT, related_name = "child")
+    class Meta:
+        unique_together = ["parent_id", "child_id"]
 
-class AssetEntryCountermeasureEntry(models.Model):
-    asset_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='protected_asset')
-    countermeasure_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='countermeasure')
+class KnowledgeRelationLookUp (models.Model):
+    asset_entry_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT, related_name = "asset")
+    countermeasure_entry_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT,  related_name = "countermeasure")
+    threat_entry_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT, related_name = "threat")
+    vulnerability_entry_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT, related_name = "vulnerability")
+    policy_entry_id =  models.ForeignKey(Knowledge, on_delete=models.PROTECT, related_name = "policy")
 
-class ThreatEntryVulnerabilityEntry(models.Model):
-    threat_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='exploiting_threat')
-    vulnerability_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='utlized_vulnerability')
+    class Meta:
+        unique_together = ["asset_entry_id", "countermeasure_entry_id", "threat_entry_id", "vulnerability_entry_id", "policy_entry_id"]
 
-class AssetEntryThreatEntry(models.Model):
-    asset_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='threatened_asset')
-    threat_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='threating_entry')
+class KnowledgeTopic(models.Model):
+    knowledge_id = models.ForeignKey(Knowledge, on_delete=models.PROTECT)
+    topic_id = models.ForeignKey(Topic, on_delete=models.PROTECT)
 
-class AssetEntryVulnerabilityEntry(models.Model):
-    asset_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='affected_asset')
-    vulnerability_entry_id = models.ForeignKey(KnowledgeBaseEntry, on_delete=models.PROTECT, related_name='present_vulnerability')
+    class Meta:
+        unique_together = ["knowledge_id", "topic_id"]
+
+class UserExpertise(models.Model):
+    user_id = models.ForeignKey(User, on_delete = models.PROTECT)
+    expertise_id = models.ForeignKey(Expertise, on_delete = models.PROTECT)
+
+    class Meta:
+        unique_together = ["user_id", "expertise_id"]

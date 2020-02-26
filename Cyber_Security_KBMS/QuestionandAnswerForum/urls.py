@@ -11,5 +11,5 @@ urlpatterns = [
     path('',views.index),
     path('ask-question', askquestion,name='askquestion'),
     path('see-questions', seeQuestion),
-    path('question/<int:qid>/<slug:qslug>', viewquestion)
+    path('question/<int:question_id>/<slug:slug>', viewquestion)
 ]
