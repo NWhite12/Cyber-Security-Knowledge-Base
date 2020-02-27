@@ -14,7 +14,7 @@
 {% for question in questions %}
   <div class="question">
     <!-- link to the website url created wit slug -->
-      <a href="/question/{{ question.question_id }}/{{ question.slug }}"><h1 class="q-color-black">{{ question.question_title }}</h1></a>
+      <a href="/question/{{ question.id }}/{{ question.slug }}"><h1 class="q-color-black">{{ question.question_title }}</h1></a>
       <p>{{ question.content|truncatechars:300|slice:"-4" }}...</p>
   </div>
 {% endfor %}

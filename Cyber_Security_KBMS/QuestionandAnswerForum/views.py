@@ -24,7 +24,8 @@ def askquestion(request):
             q.save()
 
             #Question completed correct go to viewquestion function, sending questions id and slug
-            return redirect(viewquestion, q.question_id, q.slug)
+
+            return redirect(viewquestion, q.id, q.slug)
         except Exception as e:
             # Question not entered correctly
             return render(request, 'ask-question.html', { 'error': 'Something is wrong with the form!' })
@@ -43,7 +44,9 @@ def viewquestion(request, question_id, slug):
     context = {}
 
     #find particular question with specified id and slug
-    question = Question.objects.get(question_id=question_id, slug=slug)
+    question = Question.objects.get(id=question_id, slug=slug)
+
+
 
     # assuming obj is a model instance
     # seralize question into json format
@@ -52,8 +55,8 @@ def viewquestion(request, question_id, slug):
 
     #Assigns those dictionary entries values
     question_json['date_posted'] = question.date_posted
-    question_json['question_id'] = question.question_id
-    question_json['question_content'] = question.content
+    question_json['qid'] = question.id
+    question_json['question_text'] = question.content
 
     #Assign context dictionary to question_json
     context['question'] = question_json

@@ -38,4 +38,3 @@ class QuestionExpertise(models.Model):
 class QuestionTopic(models.Model):
     question_id = models.ForeignKey(Question, on_delete = models.PROTECT)
     topic_id = models.ForeignKey('CSKnowledgeBase.Topic', on_delete = models.PROTECT)
-
