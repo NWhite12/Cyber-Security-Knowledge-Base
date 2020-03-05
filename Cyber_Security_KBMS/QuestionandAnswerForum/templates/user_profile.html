@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+  <h1 class="profile-header">Welcome {{firstname}}!</h1>
+<form method= "POST" action = "logout">
+  {%csrf_token%}
+  <div class="user-logout-button">
+    <input type = "submit" value="logout" class="btn btn-lg btn-danger">
+  </div>
+  </form>
+{% endblock %}
+</body>
+</html>

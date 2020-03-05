@@ -16,11 +16,11 @@ def query(request):
             entries = []
             for asset in tokens:
                 try:
-                    entry = models.KnowledgeBaseEntry.objects.get(topic=asset)
+                    entry = models.Knowledge.objects.get(name=asset)
                     entries.append(entry)
                 except:
                     entry = None
-            context['results'] = entries      
+            context['results'] = entries
             return render(request, 'CSKnowledgeBase/queryResults.html',context)
     else:
     #give form

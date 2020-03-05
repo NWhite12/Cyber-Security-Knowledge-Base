@@ -14,8 +14,8 @@
 
         <form method="post">
             {% csrf_token %}
-            {{ form }}
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="query-form">{{ form }}</div>
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
         </form>
         {% if error %}
             <p class="error">{{ error }}</p>
@@ -24,5 +24,3 @@
 		{% endblock %}
     </body>
 </html>
-
-

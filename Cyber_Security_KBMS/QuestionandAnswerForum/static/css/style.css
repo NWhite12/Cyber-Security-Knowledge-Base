@@ -5,8 +5,18 @@ body {
 	height: 100%;
 }
 
+.login-body{
+	background: #08038F;
+	color: white;
+	height: 28em;
+}
 html {
 	height: 100%;
+}
+
+.profile-header{
+	text-align: center;
+	padding: 2em;
 }
 
 .navbar-color {
@@ -161,16 +171,67 @@ footer {
 	margin-bottom: inherit
 }
 
+.container-login{
+	height: 18em;
+  position: relative;
+}
+
+.login-form{
+	margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-name{
+	font-size:1.3em;
+  padding-right: 0.2em;
+}
+
+#username{
+	border: 2px solid black;
+  padding: 0.5em;
+  border-radius: 0.8em;
+}
+
+#password{
+	border: 2px solid black;
+  padding: 0.5em;
+  border-radius: 0.8em;
+}
+
+.button-login {
+    justify-content: center;
+    display: flex;
+    margin-top: 2em
+}
+
+.login-button {
+	background: white;
+}
+
+.login-header{
+	text-align: center;
+  margin-top: 2em;
+}
+
+.user-logout-button{
+	justify-content: center;
+	display: flex;
+}
+
 @media only screen and (max-width: 320px){
 	.profile {
 		padding-left: initial;
 		display: none;
 	}
-	
+
 	.nav-item {
 		padding-right: 10.14em;
 	}
-	
+
 	.know-base {
 		padding-right: 5.05em;
 	}

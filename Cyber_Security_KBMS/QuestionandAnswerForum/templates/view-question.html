@@ -14,6 +14,34 @@
 		<div id="answers">
 
         </div>
+        <br>
+      <br>
+      <br>
+      <br>
+      <br>
+<h2> {{reply_title}}</h2>
+{{reply_content}}
+
+
+
+      <div>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+
+
+                <form class=""  method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="answer_title" value="" autocomplete="off" placeholder="Answer Header" class="askInput"><p />
+                    <textarea name="answer" rows="8" cols="80" placeholder="Answer Content"></textarea><p />
+                    <input type="text" name="posted_by" value="" autocomplete="off" placeholder="Enter your name ..." class="askInput"><p />
+                    <input type="submit" name="ask" value="Submit Answer" class="btn btn-outline-secondary">
+                </form>
+
+
+</p>
       {% endblock %}
     </body>
 </html>

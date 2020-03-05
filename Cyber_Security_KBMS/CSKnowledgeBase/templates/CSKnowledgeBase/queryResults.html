@@ -13,7 +13,7 @@
 <div class="content">
 {% for results in results %}
   <div class="results">
-      <p>{{results.title}}</p>
+      <p>{{results.name}}</p>
       <p>{{results.content|truncatechars:300|slice:"-4" }}...</p>
   </div>
 {% endfor %}
@@ -22,5 +22,3 @@
 {% endblock %}
 </body>
 </html>
-
-
