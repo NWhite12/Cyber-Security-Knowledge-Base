@@ -25,7 +25,7 @@ def askquestion(request):
         try:
             q_title = request.POST.get('title')
             q_question = request.POST.get('question')
-            q_posted_by = request.user.username
+            q_posted_by = request.user
 
             #Save question query in q
             q = Question(question_title=q_title, content=q_question, posted_by=q_posted_by)
@@ -53,16 +53,15 @@ def seeQuestion (request):
 
 
 def viewquestion(request, question_id, slug):
+
+    #if not logged in make them login
     if not request.user.is_authenticated:
-       return HttpResponseRedirect('login')
+       return redirect('http://127.0.0.1:8000/login')
     else:
         context = {}
 
         #find particular question with specified id and slug
         question = Question.objects.get(id=question_id, slug=slug)
-
-
-
         # assuming obj is a model instance
         # seralize question into json format
         # json.loads() -> parses JSON string
@@ -72,29 +71,35 @@ def viewquestion(request, question_id, slug):
         question_json['date_posted'] = question.date_posted
         question_json['qid'] = question.id
         question_json['question_text'] = question.content
+        question_json['posted_by']=question.posted_by.username
 
         #Assign context dictionary to question_json
         context['question'] = question_json
+
+
+
+        #Display answers to questions if there are any
         try:
-            reply=QuestionRelpy.objects.get(question_id=question_id)
-            reply=QuestionRelpy.objects.get(question_id=question_id)
-            context['reply_title'] = reply.reply_header
-            context['reply_content'] = reply.content
+            context['reply'] =  QuestionRelpy.objects.filter(question_id=question_id)
+
         except ObjectDoesNotExist:
-            print("no answers")
+            print("No Answers to this question")
 
-
-
+        #Display form for users to input answers
         if request.method == 'POST':
 
              a_header = request.POST.get("answer_title")
              a_content = request.POST.get("answer")
              question = Question.objects.get(id=question_id, slug=slug)
-             user = User.objects.get(username = "maidel")
+             user = request.user
+
+             #save form information into a questionrelpy query
              a = QuestionRelpy( reply_header = a_header, content = a_content,reply_rank=0.5,question = question, submitted_by= user)
+             #save to database
              a.save()
-             #return HttpResponse("yup")
-             return render(request, 'home.html', context)
+
+             #redirect to question
+             return redirect(viewquestion, question.id, question.slug)
         return render(request, 'view-question.html', context)
 
 def user_login(request):
@@ -125,6 +130,15 @@ def user_logout(request):
         return HttpResponseRedirect('login')
 
 def user_profile(request):
-    print(request.user.username)
-    context= {'firstname' : request.user.username}
+    if not request.user.is_authenticated:
+       return redirect('http://127.0.0.1:8000/login')
+    else:
+       context= {'firstname' : request.user.username}
+
+       #display user questions if there are any
+       try:
+           context['question'] =  Question.objects.filter(posted_by=request.user)
+       except ObjectDoesNotExist:
+           print("No questions by user")
+
     return render(request, "user_profile.html",context)

@@ -8,9 +8,16 @@
   <body>
   {% block body %}
   <h1 class="profile-header">Welcome {{firstname}}!</h1>
+  <h1> Your questions </h1>
+  {% for q  in question %}
+  <a href="/question/{{ q.id }}/{{ q.slug }}"><h2 class="q-color-black">{{ q.question_title }}</h2></a>
+{{q.content}}
+{% endfor %}
+
 <form method= "POST" action = "logout">
   {%csrf_token%}
   <div class="user-logout-button">
+
     <input type = "submit" value="logout" class="btn btn-lg btn-danger">
   </div>
   </form>

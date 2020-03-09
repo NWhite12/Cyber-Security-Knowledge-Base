@@ -10,7 +10,7 @@ class Question(models.Model):
     question_title = models.CharField(max_length=255)
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
-    posted_by = models.CharField(max_length=255, blank = True)
+    posted_by = models.ForeignKey(User, on_delete = models.PROTECT)
     expertise_required = models.BooleanField(default = False)
     #Slug = provides url for question to be referenced later
     slug = models.SlugField(max_length=40)
