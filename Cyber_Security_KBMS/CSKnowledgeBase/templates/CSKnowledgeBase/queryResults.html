@@ -9,12 +9,14 @@
   {% block body %}
 	 </div>
 	 <div class="container results">
-<h1 class="view-q-align">Results!</h1>
+<!--<h1 class="view-q-align">Results!</h1>-->
 <div class="content">
 {% for results in results %}
   <div class="results">
-      <p>{{results.name}}</p>
-      <p>{{results.content|truncatechars:300|slice:"-4" }}...</p>
+      <h2><strong>Results for: {{results.name}}</strong></h2>
+      <ol>
+        <li><p>{{results.content|truncatechars:300|slice:"-4" }}...</p></li>
+      </ol>
   </div>
 {% endfor %}
 </div>

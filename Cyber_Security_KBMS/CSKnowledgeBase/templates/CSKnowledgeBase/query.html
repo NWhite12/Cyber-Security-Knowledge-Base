@@ -12,10 +12,10 @@
         <p>Type your question below.</p>
 
 
-        <form method="post">
+        <form method="post" class="query-form">
             {% csrf_token %}
             <div class="query-form">{{ form }}</div>
-            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            <button type="submit" class="btn btn-success mt-4">Submit</button>
         </form>
         {% if error %}
             <p class="error">{{ error }}</p>
