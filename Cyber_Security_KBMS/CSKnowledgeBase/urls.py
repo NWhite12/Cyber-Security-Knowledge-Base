@@ -9,5 +9,6 @@ urlpatterns = [
 #view.index view that should be shown when homepage url is specified
 
     path('submit-query',views.query),
+    path('knowledge/<int:knowledge_id>/<slug:slug>', viewknowledge),
     
 ]

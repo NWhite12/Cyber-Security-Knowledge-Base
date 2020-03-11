@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 <!doctype html>
 {% load static %}
+{% load class_name %}
 <html>
   <head>
     <title></title>
@@ -8,17 +9,30 @@
   <body>
   {% block body %}
 	 </div>
-	 <div class="container results">
-<h1 class="view-q-align">Results!</h1>
-<div class="content">
-{% for results in results %}
-  <div class="results">
-      <p>{{results.name}}</p>
-      <p>{{results.content|truncatechars:300|slice:"-4" }}...</p>
+	<div class="container results">
+  <h1 class="view-q-align">Results!</h1>
+  <div class="content">
+  {% for results in results %}
+    {% with results|class_name as results_class %}
+        {% if results_class == 'Knowledge' %}
+          <div class="question">
+              <h5>Knowledge-base</h5>
+              <a href="/knowledge/{{ results.id }}/{{ results.slug }}"><h1 class="q-color-black">{{ results.name }}</h1></a>
+              <p>{{results.content|truncatechars:300|slice:"-1" }}...</p>
+          </div>
+        {% elif results_class == 'Question' %}
+          <div class="question">
+            <!-- link to the website url created wit slug -->
+              <h5>Question</h5>
+              <a href="/question/{{ results.id }}/{{ results.slug }}"><h1 class="q-color-black">{{ results.question_title }}</h1></a>
+              <p>{{ results.content|truncatechars:300|slice:"-4" }}...</p>
+          </div>
+        {% else %}
+    {% endif %}
+    {% endwith %}
+  {% endfor %}
+    </div>
   </div>
-{% endfor %}
-</div>
-</div>
 {% endblock %}
 </body>
 </html>
