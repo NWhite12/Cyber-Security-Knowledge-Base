@@ -9,6 +9,7 @@
   <body>
   {% block body %}
 	 </div>
+<<<<<<< HEAD
 	<div class="container results">
   <h1 class="view-q-align">Results!</h1>
   <div class="content">
@@ -32,6 +33,17 @@
     {% endwith %}
   {% endfor %}
     </div>
+=======
+	 <div class="container results">
+<!--<h1 class="view-q-align">Results!</h1>-->
+<div class="content">
+{% for results in results %}
+  <div class="results">
+      <h2><strong>Results for: {{results.name}}</strong></h2>
+      <ol>
+        <li><p>{{results.content|truncatechars:300|slice:"-4" }}...</p></li>
+      </ol>
+>>>>>>> 48c2b90c9d5342013fd06da0cbf7e5104c4e4086
   </div>
 {% endblock %}
 </body>

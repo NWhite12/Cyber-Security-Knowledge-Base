@@ -1,8 +1,12 @@
 body {
-	background-color: white;
+	background-color: #f7f7f7;
 	color: black;
 	padding-bottom: 2.5rem;
 	height: 100%;
+}
+
+.change-container-color {
+	background: white;
 }
 
 .login-body{
@@ -76,8 +80,9 @@ html {
 }
 
 .view-question {
-	margin-top: 3em;
-	border: solid #08038F;
+	padding: 4em;
+	/*margin-top: 3em;*/
+	/*border: solid #08038F;*/
 }
 
 .search-section {
@@ -128,8 +133,15 @@ input[type=text] {
     padding-bottom: 10px;
 }
 
+.askInput-modified{
+	width: 100%;
+	margin-bottom: 1em;
+	padding-bottom: 10px;
+}
+
 .input-post {
 	padding: 3em;
+	margin-bottom: 4em;
 }
 
 .content {
@@ -145,6 +157,7 @@ footer {
     bottom: 0;
     width: 100%;
 	overflow: hidden;
+	padding: 1rem;
 }
 
 .see-question-body {
@@ -168,7 +181,11 @@ footer {
     padding: 8rem;
     margin-right: 3em;
     margin-left: 5em;
-	margin-bottom: inherit
+	margin-bottom: inherit;
+}
+
+.user-reply-name{
+	font-style: italic;
 }
 
 .container-login{
@@ -218,8 +235,90 @@ footer {
 }
 
 .user-logout-button{
-	justify-content: center;
-	display: flex;
+	/*justify-content: center;*/
+	display: table;
+	margin-left: 7em;
+	margin: auto;
+}
+
+.questiondetails{
+	padding-bottom: 2em;
+  border-bottom: 1.5px solid;
+}
+
+.replies{
+	margin-bottom:2em;
+	margin-left: 8em;
+	width: 72%;
+	padding-bottom: 1em;
+	border-right: 2px solid;
+  border-left: 2px solid;
+  padding-left: 1.5em;
+	border-radius: 15px;
+}
+
+.reply-header {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.reply-content{
+	padding: 0 0 0 2em;
+}
+
+.answer{
+	padding: 5em 4em 10em 4em;
+}
+
+.query-form input{
+	background: transparent;
+}
+
+.profile-image img{
+	margin-top: 5em;
+	width: 50%;
+	height: 50%;
+	display: block;
+  margin: auto;
+}
+
+.profile-image{
+	font-size: 1.4em;
+	padding: 0 3em 3em 3em;
+	text-align: center;
+	margin-top: 5em;
+}
+
+.profile-name{
+  padding-top: 1em;
+}
+
+.your-post{
+	border: 2px solid;
+}
+
+.your-post{
+	border: 1.5px solid;
+	padding: 1em;
+}
+
+.your-post-title{
+	border: 1.5px solid;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.profile-post{
+	margin-top: 13em;
+	margin-bottom: 15em;
+}
+
+.fix-margin{
+	margin-right: 3em !important;
+}
+
+.profile-inner-post{
+	margin-bottom: 1em;
 }
 
 @media only screen and (max-width: 320px){
