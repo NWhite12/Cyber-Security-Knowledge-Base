@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+        <div class="container content">
+        <h1>Query database</h1>
+        <p>Type your question below.</p>
+
+
+        <form method="post" class="query-form">
+            {% csrf_token %}
+            <div class="query-form">{{ form }}</div>
+            <button type="submit" class="btn btn-success mt-4">Submit</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        </div>
+		{% endblock %}
+    </body>
+</html>

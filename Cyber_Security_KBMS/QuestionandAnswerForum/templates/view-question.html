@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body class="question-body">
+  {% block body %}
+	 <div class="container change-container-color">
+     <div class="view-question">
+        <h1>{{ question.question_title }}</h1>
+        <p>{{ question.content|safe }}</p>
+        <p class="questiondetails"><span style="float: left">Posted on <strong>{{ question.date_posted }}</strong></span><span style="float: right">Posted by <strong>{{ question.posted_by }}</strong></span></p>
+		<div id="answers">
+        </div>
+      </div>
+      {% for r  in reply %}
+      <div class="replies">
+        <img src="{% static 'images/user.svg' %}" width="3%" height="3%">
+        <span class="user-reply-name">{{r.submitted_by}}</span>
+<p class="reply-header"> {{r.reply_header}}</p>
+<span class="reply-content">{{r.content}}</span>
+</div>
+{% endfor %}
+                <form class="answer"  method="POST">
+                  <p class="reply-header">Your Answer</p>
+                    {% csrf_token %}
+                    <input type="text" name="answer_title" value="" autocomplete="off" placeholder="Answer Header" class="askInput-modified"><p />
+                    <textarea name="answer" rows="8" cols="134" placeholder="Answer Content"></textarea><p />
+                    <input type="submit" name="ask" value="Submit Answer" class="btn btn-success">
+                </form>
+
+
+</p>
+      {% endblock %}
+    </body>
+</html>

@@ -13,9 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+from django.conf.urls import url, include
 from django.urls import path
+from django.contrib import admin
+#from . import views
 
 urlpatterns = [
+#Specifying the path to the homepage so django knows where to redirect the user who seeks to use the homepage
+#('homepage.urls') - references the urls.py file in the homepage application
+
     path('admin/', admin.site.urls),
+    url(r'^', include ('QuestionandAnswerForum.urls')),
+    url(r'^', include ('CSKnowledgeBase.urls')),
 ]

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+<!doctype html>
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  {% block body %}
+  <div class="row fix-margin">
+    <div class="col-4">
+  <div class="profile-image">
+  <img src="{% static 'images/user.svg' %}" width="30%" height="30%">
+  <p class="profile-name">@{{firstname}}</p></div>
+  <form method= "POST" action = "logout">
+    {%csrf_token%}
+    <div class="user-logout-button">
+
+      <input type = "submit" value="logout" class="btn btn-lg btn-danger">
+    </div>
+    </form>
+   </div>
+  <div class="col-6">
+    <div class="profile-post">
+    <h1 class="your-post-title"> Your Post </h1>
+    <div class="your-post">
+  {% for q  in question %}
+  <div class="profile-inner-post">
+  <a href="/question/{{ q.id }}/{{ q.slug }}"><h2 class="q-color-black">{{ q.question_title }}</h2></a>
+{{q.content}}
+</div>
+{% endfor %}
+</div>
+</div>
+
+</div>
+{% endblock %}
+</body>
+</html>

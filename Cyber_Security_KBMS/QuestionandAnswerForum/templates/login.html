@@ -1,0 +1,36 @@
+{% load static %}
+<html>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+</head>
+  <body class="login-body">
+    <h1 class="login-header">Please Login to Access</h1>
+    <div class="container-login">
+      {% block body %}
+      <form method ="POST" class="login-form">
+        {% csrf_token %}
+	    <table>
+       <tr>
+         <td><label for ="username" class="login-name">Username:</label></td>
+         <td class="pb-3"><input type="text" name="username" id="username"></td>
+       </tr>
+
+       <tr>
+         <td><label for ="password" class="login-name">Password:</label></td>
+         <td><input type="password" name="password" id="password"></td>
+       </tr>
+        <p>{{error}}</p>
+      </table>
+<div class="button-login">
+  <button type="submit" class="btn btn-lg login-button"><strong>login</strong></button>
+</div>
+</form>
+{% endblock %}
+</body>
+</html>

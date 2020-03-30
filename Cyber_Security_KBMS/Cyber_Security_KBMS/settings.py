@@ -31,9 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'QuestionandAnswerForum',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'CSKnowledgeBase.apps.CsknowledgebaseConfig',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
