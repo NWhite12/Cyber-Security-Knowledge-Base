@@ -18,6 +18,10 @@ class Question(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.question_title)
         super(Question,self).save(*args,**kwargs)
+    
+    def __str__(self):
+        return str(self.question_title)
+    
 
 
 class QuestionRelpy(models.Model):
@@ -29,11 +33,16 @@ class QuestionRelpy(models.Model):
     question = models.ForeignKey(Question, on_delete = models.PROTECT)
     expertise_required = models.BooleanField(default = False)
 
+    def __str__(self):
+        return str(self.reply_header)
+
 class QuestionExpertise(models.Model):
     question_id = models.ForeignKey(Question, on_delete = models.PROTECT)
     expertise_id = models.ForeignKey('CSKnowledgeBase.Expertise', on_delete = models.PROTECT)
     class Meta:
         unique_together = ["question_id", "expertise_id"]
+    
+
 
 class QuestionTopic(models.Model):
     question_id = models.ForeignKey(Question, on_delete = models.PROTECT)
