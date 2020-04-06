@@ -1,17 +1,16 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.http import HttpResponseRedirect
-from django.core import serializers
-from nltk.corpus import stopwords 
-from nltk.tokenize import word_tokenize
-from django.db.models import Q
 import json
-from itertools import chain
-from .forms import QueryForm
-from . import models
-from QuestionandAnswerForum.models import Question
 import string
 
+from CSKnowledgeBase.models import Knowledge
+from QuestionandAnswerForum.models import Question
+from django.core import serializers
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.shortcuts import render
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+from .forms import QueryForm
 
 
 # Create your views here.
@@ -28,20 +27,17 @@ def query(request):
                 query = form.cleaned_data['query']
                 tokens = word_tokenize(query)
                 filteredTokens = [word for word in tokens if not word in stopWordsAndPunct]
-                knowledgeEntries = []
-                questionEntries = []
+                knowledgeEntries = Knowledge.objects.none()
+                questionEntries = Question.objects.none()
                 for item in filteredTokens:
-                    try:
-                        kEntry = models.Knowledge.objects.get(Q(name__icontains=item) |  Q(content__icontains=item))
-                        knowledgeEntries.append(kEntry)
-                        qEntry = Question.objects.get(Q(question_title__icontains=item) |  Q(content__icontains=item))
-                        questionEntries.append(qEntry)
-                    except: 
-                       None
-                    
-                    entries = knowledgeEntries + questionEntries
-                context['results'] = entries
-                return render(request, 'CSKnowledgeBase/queryResults.html',context)
+                    knowledgeEntries = (knowledgeEntries | Knowledge.objects.filter(name__icontains=item)| Knowledge.objects.filter(content__icontains=item))
+                    questionEntries = (questionEntries | Question.objects.filter(question_title__icontains=item) | Question.objects.filter(content__icontains=item))
+
+                    print(knowledgeEntries)
+
+                context['knowledgeResults'] = knowledgeEntries.distinct()
+                context['questionResults'] = questionEntries.distinct()
+                return render(request, 'CSKnowledgeBase/queryResults.html', context)
         else:
         #give form
             form = QueryForm()
@@ -56,7 +52,7 @@ def viewknowledge(request, knowledge_id, slug):
         context = {}
 
         #find particular question with specified id and slug
-        knowledge = models.Knowledge.objects.get(id=knowledge_id, slug=slug)
+        knowledge = Knowledge.objects.get(id=knowledge_id, slug=slug)
         # assuming obj is a model instance
         # seralize question into json format
         # json.loads() -> parses JSON string
