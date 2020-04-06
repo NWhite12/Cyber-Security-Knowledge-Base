@@ -11,6 +11,7 @@ class Knowledge(models.Model):
     last_modified_by  = models.ForeignKey(User, on_delete = models.PROTECT)
     insert_date = models.DateTimeField()
     update_date = models.DateTimeField()
+    
         #Slug = provides url for question to be referenced later
     slug = models.SlugField(max_length=40)
 
@@ -21,7 +22,7 @@ class Knowledge(models.Model):
             self.insert_date = timezone.now()
         self.update_date = timezone.now()
         return super(Knowledge, self).save(*args,**kwargs)
-    
+
     def __str__(self):
         return self.name
 

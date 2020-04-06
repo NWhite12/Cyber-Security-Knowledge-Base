@@ -14,14 +14,15 @@ class Question(models.Model):
     expertise_required = models.BooleanField(default = False)
     #Slug = provides url for question to be referenced later
     slug = models.SlugField(max_length=40)
+    anonymous = models.BooleanField(default = True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.question_title)
         super(Question,self).save(*args,**kwargs)
-    
+
     def __str__(self):
         return str(self.question_title)
-    
+
 
 
 class QuestionRelpy(models.Model):
@@ -32,6 +33,7 @@ class QuestionRelpy(models.Model):
     reply_rank = models.DecimalField(blank  = True, max_digits = 5, decimal_places = 2)
     question = models.ForeignKey(Question, on_delete = models.PROTECT)
     expertise_required = models.BooleanField(default = False)
+    anonymous = models.BooleanField(default = True)
 
     def __str__(self):
         return str(self.reply_header)
@@ -41,7 +43,7 @@ class QuestionExpertise(models.Model):
     expertise_id = models.ForeignKey('CSKnowledgeBase.Expertise', on_delete = models.PROTECT)
     class Meta:
         unique_together = ["question_id", "expertise_id"]
-    
+
 
 
 class QuestionTopic(models.Model):
