@@ -8,13 +8,13 @@
   <body>
   {% block body %}
 	 <div class="container view-question">
-        <h1>{{ knowledge.name }}</h1>
-        <h3>Discription:</h3>
+        <h1>{{ knowledge.name }}</h1><br>
+        <h3>Description:</h3>
         <p>{{ knowledge.content|safe }}</p>
-        <p class="knowlegedetails"><span style="float: right">Last Modified: <strong>{{ knowledge.update_date }}</strong></span></p>
+        <p class="knowlegedetails questiondetails"><span style="float: right">Last Modified: <strong>{{ knowledge.update_date }}</strong></span></p>
 
 
-    </div>    
+    </div>
 </p>
     {% endblock %}
   </body>

@@ -26,9 +26,15 @@ def askquestion(request):
             q_title = request.POST.get('title')
             q_question = request.POST.get('question')
             q_posted_by = request.user
+            q_is_anon = request.POST.get("postby")
 
+            if  (q_is_anon  is None):
+
+                anonymou_s=False
+            else:
+                anonymou_s=True
             #Save question query in q
-            q = Question(question_title=q_title, content=q_question, posted_by=q_posted_by)
+            q = Question(question_title=q_title, content=q_question, posted_by=q_posted_by,anonymous=anonymou_s)
             #save question to database
             q.save()
 
@@ -72,6 +78,12 @@ def viewquestion(request, question_id, slug):
         question_json['qid'] = question.id
         question_json['question_text'] = question.content
         question_json['posted_by']=question.posted_by.username
+        if(question.anonymous):
+            question_json['posted_by']=question.posted_by.username
+            question_json['posted_by']="ANON"
+
+        else:
+            question_json['posted_by']=question.posted_by.username
 
         #Assign context dictionary to question_json
         context['question'] = question_json
@@ -81,7 +93,18 @@ def viewquestion(request, question_id, slug):
         #Display answers to questions if there are any
         try:
             context['reply'] =  QuestionRelpy.objects.filter(question_id=question_id)
+            replylist= QuestionRelpy.objects.filter(question_id=question_id)
+            length=len(QuestionRelpy.objects.filter(question_id=question_id))
 
+            nameslist=[]
+            for i in range (0,(length)):
+                if(context['reply'][i].anonymous == True):
+                    nameslist.append(context['reply'][i].submitted_by.username)
+                elif(context['reply'][i].anonymous==False):
+                    nameslist.append("ANON")
+
+            print(nameslist)
+            context['replies']=zip(nameslist,replylist)
         except ObjectDoesNotExist:
             print("No Answers to this question")
 
@@ -92,9 +115,16 @@ def viewquestion(request, question_id, slug):
              a_content = request.POST.get("answer")
              question = Question.objects.get(id=question_id, slug=slug)
              user = request.user
+             anon = request.POST.get("postby")
+             print(anon)
+             if  (anon  is None):
+
+                 anonymou_s=True
+             else:
+                 anonymou_s=False
 
              #save form information into a questionrelpy query
-             a = QuestionRelpy( reply_header = a_header, content = a_content,reply_rank=0.5,question = question, submitted_by= user)
+             a = QuestionRelpy( reply_header = a_header, content = a_content,reply_rank=0.5,question = question, submitted_by= user,anonymous=anonymou_s)
              #save to database
              a.save()
 

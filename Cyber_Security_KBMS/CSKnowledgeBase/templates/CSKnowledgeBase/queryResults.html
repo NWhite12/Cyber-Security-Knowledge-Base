@@ -15,9 +15,10 @@
         <div class="content">
 
             <!-- TO DO NEED TO DISPLAY KNOWLEDGE RESULTS IN SEPARATE COLUMN OR SECTION -->
-
+            <div class="row">
+              <div class="col">
             <!-- iterator for knowledge result -->
-            <h3>Knowledge Results</h3>
+            <h3 class="query-header">Knowledge Results</h3>
             {% for knowledgeResult in knowledgeResults %}
                 <div class="question">
                     <!-- link to the website url created wit slug -->
@@ -26,10 +27,11 @@
                     <p>{{knowledgeResult.content|truncatechars:300|slice:"-1" }}...</p>
                 </div>
             {% endfor %}
-
+          </div>
+          <div class="col">
 
             <!-- iterator for question result -->
-            <h3>Question Results</h3>
+            <h3 class="query-header">Question Results</h3>
             {% for questionResult in questionResults %}
                 <div class="question">
                     <!-- link to the website url created wit slug -->
@@ -38,6 +40,7 @@
                     <p>{{ questionResult.content|truncatechars:300|slice:"-4" }}...</p>
                 </div>
             {% endfor %}
+          </div>
     </div>
   </div>
 {% endblock %}
