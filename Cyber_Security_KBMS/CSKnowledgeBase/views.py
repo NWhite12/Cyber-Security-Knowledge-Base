@@ -11,9 +11,14 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 from .forms import QueryForm
+from .services.SearchQueryProcessing import sort_by_most_relevant
+from .services.SearchQueryProcessing import tf_idf
 
 
 # Create your views here.
+
+
+
 def query(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('login')
@@ -33,10 +38,10 @@ def query(request):
                     knowledgeEntries = (knowledgeEntries | Knowledge.objects.filter(name__icontains=item)| Knowledge.objects.filter(content__icontains=item))
                     questionEntries = (questionEntries | Question.objects.filter(question_title__icontains=item) | Question.objects.filter(content__icontains=item))
 
-                    print(knowledgeEntries)
-
-                context['knowledgeResults'] = knowledgeEntries.distinct()
-                context['questionResults'] = questionEntries.distinct()
+                it_idf_order_knowledge = tf_idf(filteredTokens, knowledgeEntries)
+                knowledgeEntries = sort_by_most_relevant(knowledgeEntries, it_idf_order_knowledge)
+                context['knowledgeResults'] = knowledgeEntries
+                context['questionResults'] = questionEntries
                 return render(request, 'CSKnowledgeBase/queryResults.html', context)
         else:
         #give form
