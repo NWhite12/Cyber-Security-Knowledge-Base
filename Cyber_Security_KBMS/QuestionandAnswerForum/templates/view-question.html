@@ -16,7 +16,17 @@
       </div>
       {%for i,j in replies %}
 
+      <div class="row change-margin">
+        <div class="col-xs rate-margin">
+          <!-- Link to like a post -->
+             <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}/upvote"><img src="{% static 'images/ups.svg' %}" width="30" height="30"></a></p>
+             <p class="pl-2"><strong>{{j.reply_rank}}</strong></p>
 
+
+             <!-- link to dislike a post -->
+               <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}/downvote"><img src="{% static 'images/thumb-down.svg' %}" width="30" height="30"></a></p>
+             </div>
+            <div class="col">
      <div class="replies">
        <img src="{% static 'images/user.svg' %}" width="3%" height="3%">
        <span class="user-reply-name">{{i}}</span>
@@ -24,16 +34,10 @@
 
     <p class="reply-header"> {{j}}</p>
     <span class="reply-content">{{j.content}}</span>
-
- <!-- Link to like a post -->
-    <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}/upvote">Like</a></p>
-    <p> {{j.reply_rank}}</p>
-
-
-    <!-- link to dislike a post -->
-      <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}/downvote">disLike</a></p>
+</div>
 
     </div>
+  </div>
  {% endfor %}
 
                 <form class="answer"  method='POST'>

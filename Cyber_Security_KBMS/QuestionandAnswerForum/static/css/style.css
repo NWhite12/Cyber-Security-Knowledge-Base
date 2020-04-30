@@ -248,10 +248,10 @@ footer {
 }
 
 .replies{
-	margin-bottom:2em;
-	margin-left: 8em;
+	margin-bottom:4.5em;
+	margin-left: 1em;
 	width: 72%;
-	padding-bottom: 1em;
+	padding-bottom: 3em;
 	border-right: 2px solid;
   border-left: 2px solid;
   padding-left: 1.5em;
@@ -324,6 +324,16 @@ footer {
 
 .query-header{
 	text-align: center;
+}
+
+.change-margin{
+	margin-left: 0em !important;
+	margin-right: 0em !important;
+}
+
+.rate-margin{
+    margin-left: 6em;
+		margin-top: 0.8em
 }
 
 @media only screen and (max-width: 320px){
