@@ -30,11 +30,15 @@ class QuestionRelpy(models.Model):
     reply_header = models.CharField(max_length=120)
     content = models.TextField()
     submitted_by = models.ForeignKey(User, on_delete = models.PROTECT)
-    reply_rank = models.DecimalField(blank  = True, max_digits = 5, decimal_places = 2)
+    reply_rank = models.IntegerField( default=0)
     question = models.ForeignKey(Question, on_delete = models.PROTECT)
     expertise_required = models.BooleanField(default = False)
     anonymous = models.BooleanField(default = True)
+    slug = models.SlugField(max_length=40)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.reply_header)
+        super(QuestionRelpy,self).save(*args,**kwargs)
     def __str__(self):
         return str(self.reply_header)
 

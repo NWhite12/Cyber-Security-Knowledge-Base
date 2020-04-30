@@ -20,20 +20,16 @@
      <div class="replies">
        <img src="{% static 'images/user.svg' %}" width="3%" height="3%">
        <span class="user-reply-name">{{i}}</span>
+
+
     <p class="reply-header"> {{j}}</p>
     <span class="reply-content">{{j.content}}</span>
+    <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}">Feedback</a></p>
+    <p>Like {{j.reply_rank}}</p>
     </div>
  {% endfor %}
-<!--
-      {% for r  in reply %}
-      <div class="replies">
-        <img src="{% static 'images/user.svg' %}" width="3%" height="3%">
-        <span class="user-reply-name">{{r.submitted_by}}</span>
-<p class="reply-header"> {{r.reply_header}}</p>
-<span class="reply-content">{{r.content}}</span>
-</div>
-{% endfor %} -->
-                <form class="answer"  method="POST">
+
+                <form class="answer"  method='POST'>
                   <p class="reply-header">Your Answer</p>
                     {% csrf_token %}
                     <input type="text" name="answer_title" value="" autocomplete="off" placeholder="Answer Header" class="askInput-modified"><p />

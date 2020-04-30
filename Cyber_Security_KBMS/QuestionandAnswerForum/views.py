@@ -92,9 +92,9 @@ def viewquestion(request, question_id, slug):
 
         #Display answers to questions if there are any
         try:
-            context['reply'] =  QuestionRelpy.objects.filter(question_id=question_id)
-            replylist= QuestionRelpy.objects.filter(question_id=question_id)
-            length=len(QuestionRelpy.objects.filter(question_id=question_id))
+            context['reply'] =  QuestionRelpy.objects.filter(question_id=question_id).order_by('-reply_rank')
+            replylist= QuestionRelpy.objects.filter(question_id=question_id).order_by('-reply_rank')
+            length=len(QuestionRelpy.objects.filter(question_id=question_id).order_by('-reply_rank'))
 
             nameslist=[]
             for i in range (0,(length)):
@@ -172,3 +172,60 @@ def user_profile(request):
            print("No questions by user")
 
     return render(request, "user_profile.html",context)
+
+
+
+def viewreply(request, questionreply_id, slug):
+
+    #if not logged in make them login
+    if not request.user.is_authenticated:
+       return redirect('http://127.0.0.1:8000/login')
+    else:
+        context = {}
+
+        #find particular question with specified id and slug
+        questionreply = QuestionRelpy.objects.get(id=questionreply_id, slug=slug)
+        # assuming obj is a model instance
+        # seralize question into json format
+        # json.loads() -> parses JSON string
+        questionreply_json = json.loads(serializers.serialize('json', [ questionreply ]))[0]['fields']
+
+        #Assigns those dictionary entries values
+        #questionreply_json['date_posted'] = questionreply.date_posted
+        questionreply_json['qid'] = questionreply.id
+        questionreply_json['questionreply_text'] = questionreply.content
+        questionreply_json['replyrank']=questionreply.reply_rank
+        questionreply_json['slug']=questionreply.slug
+        if(questionreply.anonymous):
+            questionreply_json['posted_by']=questionreply.submitted_by.username
+        else:
+
+            questionreply_json['posted_by']="ANON"
+        #Assign context dictionary to question_json
+        context['questionreply'] = questionreply_json
+
+        context['questionid']=questionreply.question
+        return render(request, 'view-reply.html', context)
+
+def likeAnswer(request, questionreply_id, slug):
+    if not request.user.is_authenticated:
+       return redirect('http://127.0.0.1:8000/login')
+    else:
+
+        questionreply=QuestionRelpy.objects.get(id=questionreply_id, slug=slug)
+        QuestionRelpy.objects.filter(id=questionreply_id, slug=slug).update(reply_rank= questionreply.reply_rank +1)
+
+
+
+        return redirect(viewreply, questionreply_id, slug)
+def dislikeAnswer(request, questionreply_id, slug):
+    if not request.user.is_authenticated:
+       return redirect('http://127.0.0.1:8000/login')
+    else:
+
+        questionreply=QuestionRelpy.objects.get(id=questionreply_id, slug=slug)
+        QuestionRelpy.objects.filter(id=questionreply_id, slug=slug).update(reply_rank= questionreply.reply_rank -1)
+
+
+
+        return redirect(viewreply, questionreply_id, slug)

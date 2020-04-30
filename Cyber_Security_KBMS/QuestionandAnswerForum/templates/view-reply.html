@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body class="questionreply-body">
+  {% block body %}
+	 <div class="container change-container-color">
+       <a href="/question/{{ questionid.id}}/{{ questionid.slug}}">Back To Question</a>
+     <div class="view-question">
+
+        <h1>{{ questionreply.reply_header }}</h1>
+        <p>{{ questionreply.content|safe }}</p>
+       <p>Posted by {{questionreply.posted_by}}</p>
+        <p>
+
+ <!-- Maybe some cool icons for the like and dislike instead o fthe words -->
+        <a href="/questionreply/{{ questionreply.qid }}/{{ questionreply.slug }}/like">Like</a></p>
+          <p> {{questionreply.reply_rank}}</p>
+        <a href="/questionreply/{{ questionreply.qid }}/{{ questionreply.slug }}/dislike">Dislike</a></p>
+
+
+
+      </div>
+    </div>
+      {% endblock %}
+    </body>
+</html>
