@@ -24,8 +24,15 @@
 
     <p class="reply-header"> {{j}}</p>
     <span class="reply-content">{{j.content}}</span>
-    <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}">Feedback</a></p>
-    <p>Like {{j.reply_rank}}</p>
+
+ <!-- Link to like a post -->
+    <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}/upvote">Like</a></p>
+    <p> {{j.reply_rank}}</p>
+
+
+    <!-- link to dislike a post -->
+      <p><a href="/questionreply/{{ j.id }}/{{ j.slug }}/downvote">disLike</a></p>
+
     </div>
  {% endfor %}
 

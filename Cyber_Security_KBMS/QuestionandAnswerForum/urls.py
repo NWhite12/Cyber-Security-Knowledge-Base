@@ -15,8 +15,8 @@ urlpatterns = [
     path('login', user_login),
     path('user_profile', user_profile),
     path('logout', user_logout),
-    path('questionreply/<int:questionreply_id>/<slug:slug>', viewreply),
-    path('questionreply/<int:questionreply_id>/<slug:slug>/like', likeAnswer),
-    path('questionreply/<int:questionreply_id>/<slug:slug>/dislike', dislikeAnswer),
+
+    path('questionreply/<int:questionreply_id>/<slug:slug>/upvote', upvote),
+    path('questionreply/<int:questionreply_id>/<slug:slug>/downvote', downvote),
 
 ]
