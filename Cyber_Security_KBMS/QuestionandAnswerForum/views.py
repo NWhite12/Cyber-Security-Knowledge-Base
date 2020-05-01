@@ -1,8 +1,17 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from QuestionandAnswerForum.models import *
 from django.core import serializers
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login as auth_login
+import json
+import markdown2
+import bleach
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.urls import reverse
+
 
 
 def index(request):
