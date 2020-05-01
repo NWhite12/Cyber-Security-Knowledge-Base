@@ -1,8 +1,8 @@
-README
+#README
 
-OVERVIEW
+##OVERVIEW
 
-REQUIREMENTS
+##REQUIREMENTS
 
 Python 3.8
 Dependencies:
@@ -11,10 +11,13 @@ Dependencies:
 
 
 
-INSTALLATION
+##INSTALLATION
+
+##Usage
+###### Features
 
 
-RESOURCES
+##RESOURCES
 
 
 
