@@ -1,6 +1,37 @@
 README
+Cybersecurity Based Knowledge Management  System
+Team 2 Spring 2020
+ 
 
-OVERVIEW
+INTRODUCTION
+C-KMS aims to store and retrieve corporate information security knowledge, improve collaboration,
+locate knowledge sources, mine repositories for hidden knowledge, capture and use knowledge in the
+workplace. The target users of C-KMS would be company employees who use information systems in
+their day-to-day work. Two fundamental technologies will significantly contribute to the development,
+implementation, and maintenance of C-KMS: portals and databases. To that end, general users (company
+employees) should be comfortable to obtain security-relevant knowledge they need at work (i.e., ease of
+use and usability of C-KMS), while they can engage in the knowledge-creating process via the portal,
+posting questions, insights, and even solutions related to corporate information security.
+
+SETTING 
+
+This is a project created during the Spring 2020 semester at Columbus State University for the Senior Software engineering class. It is sponsored  by Dr. William Li And Dr. Yoon Lee at Columbus State University. Through use of web technologies the portal has been implemented with Django and the database portion using MySQLite. 
+
+
+Features
+Here is a list of the features the software implements:
+1. Login 
+    a.the user will be able to access specific profiles given the correct credentials
+2. Post a question
+    a. User will be able to post a question  other users can view
+3. View a question
+    a. User is able to see all of their own questions
+4. Respond to a question
+    User is able to respond to questions directly
+6. Rate a question
+    a. User is able to rate responses to questions 
+7. Search through query base (Knowledge-base) and question base
+    a. User is able to search and get back bothe knowledge base results and questions related to their initial search. 
 
 REQUIREMENTS
 
