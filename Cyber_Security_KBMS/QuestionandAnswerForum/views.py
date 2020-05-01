@@ -148,7 +148,7 @@ def user_login(request):
             login(request, user)
             return render(request, "home.html",context)
         else:
-            context["error"]="wrong creditabls"
+            context["error"]="wrong credentials"
             return render (request, "login.html",context)
     else:
         return render (request, "login.html",context)
