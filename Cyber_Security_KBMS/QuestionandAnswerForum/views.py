@@ -1,17 +1,8 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from QuestionandAnswerForum.models import *
 from django.core import serializers
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth import login as auth_login
-import json
-import markdown2
-import bleach
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
-from django.urls import reverse
-
+from django.shortcuts import render, redirect
 
 
 def index(request):
@@ -148,7 +139,7 @@ def user_login(request):
             login(request, user)
             return render(request, "home.html",context)
         else:
-            context["error"]="wrong creditabls"
+            context["error"]="wrong credentials"
             return render (request, "login.html",context)
     else:
         return render (request, "login.html",context)
