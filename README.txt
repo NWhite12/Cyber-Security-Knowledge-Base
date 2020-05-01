@@ -18,8 +18,10 @@ SETTING
 This is a project created during the Spring 2020 semester at Columbus State University for the Senior Software engineering class. It is sponsored  by Dr. William Li And Dr. Yoon Lee at Columbus State University. Through use of web technologies the portal has been implemented with Django and the database portion using MySQLite. 
 
 
-Features
-Here is a list of the features the software implements:
+
+FEATURES
+
+List of the features the software implements:
 1. Login 
     a.the user will be able to access specific profiles given the correct credentials
 2. Post a question
@@ -140,6 +142,13 @@ Cyber Security Web Application:
         The results will be displayed in order by relevancy.
 
 
+ABOUT DATABASE CONTENTS
+The sample data in place currently has a core based around the cybersecurity best practices for Columbus State University found here: https://infosec.columbusstate.edu/securitypolicies/security_policies.php
+Each  item serves as a preloaded entry, and directly relates to real world data. 
+
+        ***Note through access to the administrative side of the project a user will have the authority to add Knowledge-Base Entries of their own. (see sec. Admin Portal to access)
+
+
 RESOURCES
     Django - https://docs.djangoproject.com/en/3.0/
     markdown2 - http://www.web2py.com/examples/static/sphinx/gluon/gluon.contrib.markdown.html#module-gluon.contrib.markdown.markdown2
@@ -147,3 +156,12 @@ RESOURCES
     numpy - https://numpy.org/
     scikit-learn - https://scikit-learn.org/stable/user_guide.html
     scipy - https://www.scipy.org/docs.html
+
+
+CREDITS 
+    Team 2 Members:
+        -Sharon Deloach
+        -Maidel Fletes
+        -Mary Harrell
+        -Claudia Marguin
+        -Nick White
