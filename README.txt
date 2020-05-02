@@ -90,11 +90,18 @@ Ensure that Windows Command Prompt has access to Python commands:
     10. Click OK in System Properties window
     11. Test configuration by opening a Command Prompt window and typing "python -V" and you should see Python 3.8.x
 
+Command Prompt Tips:
+    Command             Action
+    cd <name of file>   -change into folder in current directory
+    cd ..               -return to previous directory
+    dir                 -list all files in current directory
+
+    Resource for command prompt commands: https://www.digitalcitizen.life/command-prompt-how-use-basic-commands
 
 Install program and python dependencies:
-    1. Extract Cyber-Security-Knowledge-Base file to desired location
+    1. Extract Cyber-Security-Knowledge-Base file to desired location.
     2. Start command prompt and navigate, utilizing cd command, to the /Cyber-Security-Knowledge-Base program location
-        in command prompt
+        in command prompt For example.
     3. To install dependencies type "python -m pip install -r requirements.txt"
     4. Wait for installation to complete
 
