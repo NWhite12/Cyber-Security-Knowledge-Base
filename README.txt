@@ -15,7 +15,9 @@ posting questions, insights, and even solutions related to corporate information
 
 SETTING 
 
-This is a project created during the Spring 2020 semester at Columbus State University for the Senior Software engineering class. It is sponsored  by Dr. William Li And Dr. Yoon Lee at Columbus State University. Through use of web technologies the portal has been implemented with Django and the database portion using MySQLite. 
+This is a project created during the Spring 2020 semester at Columbus State University for the Senior Software engineering
+class. It is sponsored  by Dr. William Li And Dr. Yoon Lee at Columbus State University.
+Through use of web technologies the portal has been implemented with Django and the database portion using MySQLite.
 
 
 
@@ -33,7 +35,7 @@ List of the features the software implements:
 6. Rate a question
     a. User is able to rate responses to questions 
 7. Search through query base (Knowledge-base) and question base
-    a. User is able to search and get back bothe knowledge base results and questions related to their initial search. 
+    a. User is able to search and get back both knowledge base results and questions related to their initial search.
 
 REQUIREMENTS
 
@@ -143,10 +145,12 @@ Cyber Security Web Application:
 
 
 ABOUT DATABASE CONTENTS
-The sample data in place currently has a core based around the cybersecurity best practices for Columbus State University found here: https://infosec.columbusstate.edu/securitypolicies/security_policies.php
+The sample data in place currently has a core based around the cybersecurity best practices for Columbus State University
+found here: https://infosec.columbusstate.edu/securitypolicies/security_policies.php
 Each  item serves as a preloaded entry, and directly relates to real world data. 
 
-        ***Note through access to the administrative side of the project a user will have the authority to add Knowledge-Base Entries of their own. (see sec. Admin Portal to access)
+***Note through access to the administrative side of the project a user will have the authority to add Knowledge-Base
+    Entries of their own. (see sec. Admin Portal to access)
 
 
 RESOURCES
